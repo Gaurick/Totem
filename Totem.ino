@@ -15,6 +15,9 @@
  * To do
  * add success/failure counter (such as rolling for Vampire the Masquerade or Shadowrun).
  * heads or tails (HEAD vs TAIL *should* work on the seven segment display.)
+ * set minimum analog values to a (global?) variable to make changing those easier for different 
+ * resistors and buttons.
+ * add crit failure and success option.
  *
 */
 
