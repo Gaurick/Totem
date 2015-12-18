@@ -1,3 +1,7 @@
+/* An analog reader for the Trinket.
+* required to calibrate the dice totem and get it up and running.
+*/
+
 #include <TinyWireM.h>
 #include "Adafruit_LEDBackpack.h"
 #include "Adafruit_GFX.h"
