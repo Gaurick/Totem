@@ -167,7 +167,7 @@ void roll(){
       rollArray[h] = random(1, (diceSides + 1));
     }
 
-    for(int j = 0; j < (diceNumber), j ++;){
+    for(int j = 0; j < (diceNumber); j ++){
       result = rollArray[j] + result;
     }
   }
@@ -186,8 +186,3 @@ void show(){
   matrix.writeDigitNum(4, (diceSides %10));
   matrix.writeDisplay();
 }
-
-
-
-
-
