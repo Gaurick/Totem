@@ -30,6 +30,12 @@ https://www.radioshack.com/products/radioshack-1-8-watt-1k-carbon-film-resistors
 1M Ohm Resistor
 https://www.radioshack.com/products/radioshack-1m-ohm-1-2w-5-carbon-film-resistor-pk-5?variant=5717284613
 
+LED backpack library
+https://github.com/adafruit/Adafruit-LED-Backpack-Library
+
+Adafruit GFX Library (for displays)
+https://github.com/adafruit/Adafruit-GFX-Library
+
 
 ++Wiring.++
 
