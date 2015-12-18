@@ -1,22 +1,28 @@
 /*since the Trinket doesn’t have serial output (or input?) here’s a quick way to get analog readings
 on an attached 4 digit 7 segment LED display.
+needed to calibrate what the voltage values of each button press.
+shows the maximum value read, then the minimum value read, then it resets the max and minimum.
 
-need to list links and stuff to make this work and how to wire it all together?*/
+*/
 
 #include <TinyWireM.h>
 #include "Adafruit_LEDBackpack.h"
 #include "Adafruit_GFX.h"
+//libraries to make it work.
 
 Adafruit_7segment matrix = Adafruit_7segment();
+//set the display to be matrix.[command].
 
 #define analogButtons 2
 int analogValue = 0;
-int analogMin = 0;
+int analogMin = 1025;
 int analogMax = 0;
+//variables for the buttons and the analog values read.
+
+int t = 0;
+//time keeper.
 
 void setup(){
-  //Serial.begin(9600);
-  
   matrix.begin(0x71);
   //starts up the seven segment display.
 }
@@ -25,25 +31,44 @@ void setup(){
 void loop(){
   analogValue = analogRead(analogButtons);
 
-  //uncomment this to show the analog reading (0-1024ish).
-  /*matrix.print(analogValue);
-  matrix.writeDisplay();*/
+  if(t < 1000){
+    //counter to avoid the use of delay();
+    t ++;
+  }
 
-  //uncomment this to track and show the lowest value that the trinket reads.
-  /*if(analogValue < analogMin){
+  else{
+    //reset the timer and the min/max values.
+    t = 0;
+    analogMin = 1025;
+    analogMax = 0;
+  }
+
+ if(analogValue < analogMin){
     analogMin = analogValue;
   }
   
-  matrix.print(analogMin);
-  matrix.writeDisplay();*/
-
-  //uncomment this to track and show the highest value that the trinket reads.
-  /*if(analogValue > analogMax){
+  if(analogValue > analogMax){
     analogMax = analogValue;
   }
 
-  matrix.print(analogMax);
-  matrix.writeDisplay();*/
+ 
+show();
 }
+
+void show(){
+  //shows the minimum, then switches to the maximum.
+  if(t < 300){
+    matrix.print(analogMin);
+    matrix.writeDisplay();
+    delay(10);
+  }
+
+  else{
+    matrix.print(analogMax);
+    matrix.writeDisplay();
+  }
+}
+
+
 
 
