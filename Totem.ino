@@ -11,15 +11,10 @@
  * v1.01 - removed rotary encoder, replaced with buttons, set code for trinket pro.
  * v1.02 - after breaking the trinket pro, adjusted to work on trinket.  changed buttons
  * to function on analog input instead of digital.
- * 
- * To do
- * add success/failure counter (such as rolling for Vampire the Masquerade or Shadowrun).
- * heads or tails (HEAD vs TAIL *should* work on the seven segment display.)
- * set minimum analog values to a (global?) variable to make changing those easier for different 
- * resistors and buttons.
- * add crit failure and success option.
+ * v1.03 - worked the analog kinks.  turned off input (kinda) when charging to prevent 
+ * the analog values to not match up at all. got most of the bugs worked out.
  *
-*/
+ */
 
 #include <TinyWireM.h>
 #include "Adafruit_LEDBackpack.h"
@@ -56,11 +51,11 @@ void loop(){
   analogValue = analogRead(analogButtons);
   //check the button
 
-  if(analogValue > 685){
+  if(analogValue > 800){
     // the number of dice button is being pressed.
-    //adjust the 685 value based on the results of testing from the analog test.
+    //adjust the 800 value based on the results of testing from the analog test.
     if(diceNumber < 9){
-      diceNumber = diceNumber ++;
+      diceNumber ++;
       delay(250);
     }
 
@@ -70,11 +65,11 @@ void loop(){
     }
   }
 
-  else if(analogValue > 628){
+  else if(analogValue > 745){
     //the number of sides of dice button is being pressed.
-    //adjust the 628 value based on the results of the analog test.
+    //adjust the 745 value based on the results of the analog test.
     if(diceSidesCounter < 8){
-      diceSidesCounter = diceSidesCounter ++;
+      diceSidesCounter ++;
       delay(250);
     }
 
@@ -84,9 +79,9 @@ void loop(){
     }
   }
 
-  else if(analogValue > 594){
+  else if(analogValue > 710){
     //the button to roll was pressed.
-    //adjust the 594 value based on the results of the analog test.
+    //adjust the 700 value based on the results of the analog test.
     //this stuff sets the flag to roll the dice, then clears the results of the last roll.
     rollFlag = 1;
     for(int i = 0; i < 10; i ++){
@@ -96,6 +91,11 @@ void loop(){
     result = 0;
     diceSidesCounter = 0;
     delay(250);
+  }
+
+  else if(analogValue < 355){
+    diceSidesCounter = 9;
+    //totem is charging, so put up message and don't take inputs.
   }
   
   sort();
@@ -157,6 +157,17 @@ void sort(){
     show();
     break;
     //percentile
+
+    case 9:
+    matrix.writeDigitRaw(0, 57);
+    matrix.writeDigitRaw(1, 118);
+    matrix.writeDigitRaw(3, 119);
+    matrix.writeDigitRaw(4, 125);
+    matrix.writeDisplay();
+    //when the totem is charging display CHAG (or CHA6...)
+    
+    diceSidesCounter = 1;
+    //reset the dice sides counter so it returns to display stuff when unplugged.
   }
 }
 
