@@ -61,13 +61,19 @@ The other sides of the buttons (without the resistors) all tie to pin #4 on the 
 
 ++To do.++
 Add success/failure counter (such as rolling for Vampire the Masquerade or Shadowrun).
+
 Heads or tails (HEAD vs TAIL *should* work on the seven segment display.)
+
 Set minimum analog values to a (global?) variable to make changing those easier for different 
   resistors and buttons.
+
 Add crit failure and success option.
+
 Adjust analog reads to allow the totem to be used when charging (charging messes with the 
   analog values displayed by the buttons when pressed.)
+
 Configure it to "remember" the last roll instead of reset.
+
 Get the dice number button to work when the screen shows the roll.
 
 
