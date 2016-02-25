@@ -159,12 +159,11 @@ void sort(){
     //percentile
 
     case 9:
-    matrix.writeDigitRaw(0, 57);
-    matrix.writeDigitRaw(1, 118);
-    matrix.writeDigitRaw(3, 119);
-    matrix.writeDigitRaw(4, 125);
+    matrix.writeDigitRaw(0, 62);
+    matrix.writeDigitRaw(1, 109);
+    matrix.writeDigitRaw(3, 255);
     matrix.writeDisplay();
-    //when the totem is charging display CHAG (or CHA6...)
+    //when the totem is charging display USB.
     
     diceSidesCounter = 1;
     //reset the dice sides counter so it returns to display stuff when unplugged.
