@@ -162,6 +162,7 @@ void sort(){
     matrix.writeDigitRaw(0, 62);
     matrix.writeDigitRaw(1, 109);
     matrix.writeDigitRaw(3, 255);
+    matrix.writeDigitRaw(4, 0);
     matrix.writeDisplay();
     //when the totem is charging display USB.
     
