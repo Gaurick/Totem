@@ -54,10 +54,12 @@ void check(){
     if(t==1){
       a = analogValue;
       analogAve = analogValue;
+      //sets a first value to average with the rest of the analog read values.
     }
 
     else{
       analogAve = (a + analogValue) /2;
+      //averages the analog values.
     }
 
     if(analogValue < analogMin){
