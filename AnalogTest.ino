@@ -24,6 +24,8 @@ Adafruit_7segment matrix = Adafruit_7segment();
 #define analogButtons 2
 int analogValue = 0;
 int analogMin;
+int a;
+int analogAve;
 int analogMax;
 
 void setup(){
@@ -49,6 +51,15 @@ void check(){
     analogValue = analogRead(analogButtons);
     //check the button
 
+    if(t==1){
+      a = analogValue;
+      analogAve = analogValue;
+    }
+
+    else{
+      analogAve = (a + analogValue) /2;
+    }
+
     if(analogValue < analogMin){
       analogMin = analogValue;
       //check to see if the value is less than the minimum, then set it as the minimum if so.
@@ -67,8 +78,11 @@ void check(){
   matrix.writeDisplay();
   delay(5000);
 
+  matrix.print(analogAve);
+  matrix.writeDisplay();
+  delay(5000);
+
   matrix.print(analogMax);
   matrix.writeDisplay();
   delay(5000);
 }
-
